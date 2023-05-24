@@ -22,20 +22,23 @@ function App() {
     <div className="w-screen h-screen flex flex-col justify-center items-center">
       <Dropzone onUpload={handleUpload} />
       {uploadedFiles.length > 0 && (
-        <ul>
+        <ul className="w-2/3  my-5">
           {uploadedFiles.map((file, index) => (
-            <li key={index}>
+            <li className="bg-sky-100 p-5 w-full my-2 rounded-lg" key={index}>
               {file.type.startsWith("image/") ? (
                 <div className="flex gap-5 items-center">
                   <img
                     src={URL.createObjectURL(file)}
                     alt="avatar"
-                    className="image-input-wrapper w-10 h-10 rounded-full cursor-pointer opacity-75-hover"
+                    className="image-input-wrapper w-12 h-12 rounded-full cursor-pointer opacity-75-hover"
                   />
                   <span>{file.name}</span>
                 </div>
               ) : (
-                <p>{file.name}</p>
+                <div className="flex gap-5 items-center">
+                  <div className=" bg-gray-200  w-12 h-12 rounded-full cursor-pointer"></div>
+                  <span>{file.name}</span>
+                </div>
               )}
             </li>
           ))}
