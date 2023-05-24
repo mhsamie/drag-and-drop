@@ -5,7 +5,7 @@ type Props = {
 };
 
 const Dropzone = ({ onUpload }: Props) => {
-  const [isDragActive, setIsDragActive] = useState(false);
+  const [isDragActive, setIsDragActive] = useState<boolean>(false);
 
   const handleDragEnter = () => {
     setIsDragActive(true);
@@ -24,16 +24,22 @@ const Dropzone = ({ onUpload }: Props) => {
 
   return (
     <div
-      className={
-        "flex justify-center items-center w-1/3 h-48 border-2 border-dashed rounded-lg p-4" +
-        `${isDragActive ? "border-blue-500" : "border-gray-300"}`
-      }
+      className={`flex justify-center items-center w-2/3 h-48 border-2 border-dashed rounded-lg p-5
+        ${isDragActive ? "bg-sky-50 border-sky-400" : "border-gray-300"}`}
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onDragOver={(e) => e.preventDefault()}
       onDrop={handleDrop}
     >
-      <p>Drag and drop your files here or click to select files</p>
+      <p
+        className={`text-sm ${
+          isDragActive ? "text-sky-800" : "text-gray-400"
+        }  `}
+      >
+        {isDragActive
+          ? "Leave Your File Here"
+          : "Drag and drop your files here"}
+      </p>
     </div>
   );
 };
